@@ -17,13 +17,13 @@
 		protected $published = true;
 
 		// CONFIG Data
-		protected $jwt_secretKey 	= null;
+		protected static $jwt_secretKey = null;
 
 
 		// init
 		public function execute()
 		{
-			$this->setConfig(); // set the config from redaxo
+			// $this->setConfig(); // set the config from redaxo
 
 			$msg = '';
 			$msg = $this->addSlim();
@@ -40,7 +40,7 @@
 			$app->add(new \Slim\Middleware\JwtAuthentication([
 				"path" 			=> "/slimdaxo",
 				"passthrough" 	=> "/slimdaxo/token",
-				"secret" 		=> "supersecretkeyyoushouldnotcommittogithub"
+				"secret" 		=> self::$jwt_secretKey
 			]));
 
 
@@ -58,7 +58,7 @@
 						"sub" => rex::getServer()
 					];
 
-					$secret 			= 'supersecretkeyyoushouldnotcommittogithub';
+					$secret 			= self::$jwt_secretKey;
 					$token 				= JWT::encode($payload, $secret, "HS256");
 					$data["token"] 		= $token;
 					$data["expires"] 	= $future->getTimeStamp();
@@ -69,36 +69,15 @@
 				});
 			});
 
-			// $app->group('/slimdaxo', function () {
-			//
-			// 	$app->post('/token', function (Request $request, Response $response) {
-			//
-			// 	});
-			//
-			// 	$this->map(['GET', 'POST'], '/link1', function (Request $request, Response $response) {
-			// 	    $response->getBody()->write("Link 1");
-			// 	    return $response;
-			// 	});
-			// 	$this->map(['GET', 'POST', 'PUT'], '/link2', function (Request $request, Response $response) {
-			// 		if($request->isPut()) {
-			// 	    	$data = ['text'=>'LINK 2 PUT'];
-			// 		} else {
-			// 			$data = ['text'=>'LINK 2'];
-			// 		}
-			// 	    $response = $response->withJson($data);
-			// 	    return $response;
-			// 	});
-			//
-			// });
-			$app->run();
 
+			$app->run();
 			exit;
 		}
 
 
-		private function setConfig() {
+		private static function setConfig() {
 			$addon = rex_addon::get('slimdaxo');
-			$this->jwt_secretKey 	= $addon->getConfig('slimdaxo_secretKey');
+			self::$jwt_secretKey = $addon->getConfig('slimdaxo_secretKey');
 		}
 
 

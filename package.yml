@@ -10,6 +10,7 @@ page:
     icon:   rex-icon fa-plug
     subpages:
         slimdaxo_settings:   { pjax: true, title: 'translate:slimdaxo_settings', perm: slimdaxo[] }
+        slimdaxo_demo:       { pjax: true, title: 'translate:slimdaxo_demo', perm: slimdaxo[] }
 
 requires:
     packages:

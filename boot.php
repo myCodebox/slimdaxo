@@ -1,11 +1,12 @@
 <?php
 
-/**
- * @var rex_addon $this
- */
 
-// register a custom yrewrite scheme
-// rex_yrewrite::setScheme(new rex_project_rewrite_scheme());
-
-// register yform template path
-// rex_yform::addTemplatePath($this->getPath('yform-templates'));
+	if(rex::isBackend()) {
+		// BACKEND
+		rex_view::addJsFile($this->getAssetsUrl('js/jsrsasign.min.js'));
+		// set api url
+		$url = rex::getServer().'slimdaxo/token';
+		rex_view::setJsProperty('slimdaxo_token', base64_encode($url));
+	} else {
+		// FRONTEND
+	}
