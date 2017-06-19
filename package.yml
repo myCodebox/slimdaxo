@@ -1,0 +1,18 @@
+package: slimdaxo
+version: dev
+author: Herbert Leier
+supportpage: https://www.codebox.at/
+
+page:
+    block:  codebox
+    title:  'Slimdaxo'
+    perm:   restful_api[]
+    icon:   rex-icon fa-plug
+    subpages:
+        slimdaxo_settings:   { pjax: true, title: 'translate:slimdaxo_settings', perm: slimdaxo[] }
+
+requires:
+    packages:
+        ycom: '^2.0'
+        be_style/customizer: '^2.2.0'
+    redaxo: '^5.3.0'

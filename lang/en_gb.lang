@@ -1,0 +1,17 @@
+navigation_codebox = Codebox
+
+
+slimdaxo_title = Slimdaxo for Redaxo 5
+
+
+// SEITEN
+slimdaxo_settings 	= Settings
+
+
+// EINSTELLUNGEN
+slimdaxo_save_btn 	= Save
+slimdaxo_active 	= Frontend request
+
+
+form_function_title 		= Funktion
+form_function_empty_defined	= Bitte eine Funktion eintragen
