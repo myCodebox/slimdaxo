@@ -9,8 +9,13 @@
 
 	$content .= '<div class="container-fluid">
 			<div class="col-xs-12"><h3>Token</h3></div>
-			<div class="col-xs-10"><pre id="token"></pre></div>
+			<div class="col-xs-10"><pre id="token" style="white-space: pre-wrap; word-break: normal;"></pre></div>
+			
 			<div class="col-xs-2"><button type="button" id="gettoken">Get the Token</button></div>
+
+			<div class="col-xs-12"><h3>Expires</h3></div>
+			<div class="col-xs-10"><pre id="expires" style="white-space: pre-wrap; word-break: normal;"></pre></div>
+
 		</div>';
 
 
@@ -45,6 +50,7 @@
 				method: 'post',
 				success: function (res) {
 					$('#token').text(res.token);
+					$('#expires').text(res.expires);
 				}
 			});
 		};
