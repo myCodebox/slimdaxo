@@ -1,22 +1,3 @@
-<script type="text/javascript">
-
-	(function () {
-		"use strict";
-
-		var App = App || {};
-
-		App.init = function () {
-			this.token = rex.slimdaxo_token; // b64utos(App.token)
-		}
-
-		if (typeof rex.slimdaxo_token !== "undefined" && rex.slimdaxo_token != "") {
-			App.init();
-		}
-	})();
-
-
-</script>
-
 <?php
 
 
@@ -27,10 +8,9 @@
 	$htaccess_str = rex_file::get($path);
 
 	$content .= '<div class="container-fluid">
-			<div class="col-xs-12">
-				<h3>Token</h3>
-				<pre id="token"></pre>
-			</div>
+			<div class="col-xs-12"><h3>Token</h3></div>
+			<div class="col-xs-10"><pre id="token"></pre></div>
+			<div class="col-xs-2"><button type="button" id="gettoken">Get the Token</button></div>
 		</div>';
 
 
@@ -38,3 +18,42 @@
 	$fragment->setVar('title', $this->i18n('slimdaxo_demo'));
 	$fragment->setVar('body', $content, false);
 	echo $fragment->parse('core/page/section.php');
+
+?>
+
+<script type="text/javascript">
+
+	(function () {
+		"use strict";
+
+		var App = App || {};
+
+		App.init = function () {
+			this.token_url 	= rex.slimdaxo_token; // b64utos(App.token)
+			this.hash 		= null;
+		}
+
+		var gettoken = document.getElementById('gettoken');
+		gettoken.addEventListener('click', function(e){
+			e.preventDefault();
+			App.gettoken();
+		}, false);
+
+		App.gettoken = function () {
+			reqwest({
+				url: b64utos(App.token_url),
+				method: 'post',
+				success: function (res) {
+					$('#token').text(res.token);
+				}
+			});
+		};
+
+
+		if (typeof rex.slimdaxo_token !== "undefined" && rex.slimdaxo_token != "") {
+			App.init();
+		}
+	})();
+
+
+</script>
