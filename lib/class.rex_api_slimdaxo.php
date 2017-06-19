@@ -1,9 +1,10 @@
 <?php
 
+	require '/redaxo/src/addons/slimdaxo/vendor/autoload.php';
+
 	use \Psr\Http\Message\ServerRequestInterface as Request;
 	use \Psr\Http\Message\ResponseInterface as Response;
-
-	require '/redaxo/src/addons/slimdaxo/vendor/autoload.php';
+	use \Firebase\JWT\JWT;
 
 	class rex_api_slimdaxo extends rex_api_function {
 

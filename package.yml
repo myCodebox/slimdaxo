@@ -6,7 +6,7 @@ supportpage: https://www.codebox.at/
 page:
     block:  codebox
     title:  'Slimdaxo'
-    perm:   restful_api[]
+    perm:   slimdaxo[]
     icon:   rex-icon fa-plug
     subpages:
         slimdaxo_settings:   { pjax: true, title: 'translate:slimdaxo_settings', perm: slimdaxo[] }
