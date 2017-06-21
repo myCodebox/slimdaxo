@@ -23,13 +23,20 @@
 		// init
 		public function execute()
 		{
-			// $this->setConfig(); // set the config from redaxo
-
-			$msg = '';
 			$msg = $this->addSlim();
+			// $msg = $this->getUser();
 			$res = new rex_api_result(true, $msg);
 			return $res;
 		}
+
+		// private function getUser()
+		// {
+		// 	$user = (rex::isBackend()) ? rex::getUser() : rex_ycom_auth::getUser();
+		// 	if( $user ) {
+		// 		echo $user->getId();
+		// 		exit;
+		// 	}
+		// }
 
 
 		// add slim frajmework
