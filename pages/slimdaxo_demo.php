@@ -14,6 +14,8 @@
 			<pre id="token" style="white-space: pre-wrap; word-break: normal;"></pre>
 			<h3>Expires</h3>
 			<pre id="expires" style="white-space: pre-wrap; word-break: normal;"></pre>
+			<h3>Hash</h3>
+			<pre id="hash" style="white-space: pre-wrap; word-break: normal;"></pre>
 		</div>
 		<div class="col-xs-12 col-sm-3">
 			<button type="button" class="btn btn-block btn-primary" id="gettoken">Get the Token</button>
@@ -53,6 +55,7 @@
 				success: function (res) {
 					$('#token').text(res.token);
 					$('#expires').text(res.expires);
+					$('#hash').text(b64utos(res.hash));
 				}
 			});
 		};
