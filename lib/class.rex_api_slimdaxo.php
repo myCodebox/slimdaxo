@@ -45,9 +45,9 @@
 			$app->group('/slimdaxo', function () {
 				$this->map(['GET','POST'], '/token', function (Request $request, Response $response) {
 
-					$hash_b64	= rex_request('hash', 'string');
-					$json_str 	= base64_decode($hash_b64);
-					$json_arr 	= json_decode($json_str, true);
+					// $hash_b64	= rex_request('hash', 'string');
+					// $json_str 	= base64_decode($hash_b64);
+					// $json_arr 	= json_decode($json_str, true);
 
 					$now 	= new DateTime();
 					$future = new DateTime("now +2 hours");

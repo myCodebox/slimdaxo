@@ -19,11 +19,11 @@
 				]);
 				rex_view::setJsProperty('slimdaxo_hash', base64_encode(rtrim($hash)) );
 			}
-			
-			if(rex::isBackend()) {
+
+			if(rex::isBackend() && $rex_user = rex::getUser()) {
 				$hash = json_encode([
-					'uid' => rex::getUser()->getId(),
-					'key' => 'Backend Demo!111',
+					'uid' => $rex_user->getId(),
+					'key' => 'Backend Demo',
 				]);
 				rex_view::setJsProperty('slimdaxo_hash', base64_encode(rtrim($hash)) );
 			}
