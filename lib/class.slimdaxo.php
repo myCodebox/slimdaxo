@@ -30,12 +30,3 @@
 
 
 	}
-
-
-	// public function getUser()
-	// {
-	// 	$user = (rex::isBackend()) ? rex::getUser() : rex_ycom_auth::getUser();
-	// 	if( $user ) {
-	// 		return $user->getId();
-	// 	}
-	// }
