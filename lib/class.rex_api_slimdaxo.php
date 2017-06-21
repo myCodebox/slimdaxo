@@ -24,25 +24,16 @@
 		public function execute()
 		{
 			$msg = $this->addSlim();
-			// $msg = $this->getUser();
 			$res = new rex_api_result(true, $msg);
 			return $res;
 		}
-
-		// private function getUser()
-		// {
-		// 	$user = (rex::isBackend()) ? rex::getUser() : rex_ycom_auth::getUser();
-		// 	if( $user ) {
-		// 		echo $user->getId();
-		// 		exit;
-		// 	}
-		// }
 
 
 		// add slim frajmework
 		public function addSlim()
 		{
 			$app = new \Slim\App;
+
 
 			$app->add(new \Slim\Middleware\JwtAuthentication([
 				"path" 			=> "/slimdaxo",
@@ -53,10 +44,16 @@
 
 			$app->group('/slimdaxo', function () {
 				$this->map(['GET','POST'], '/token', function (Request $request, Response $response) {
+
+					$hash_b64	= rex_request('hash', 'string');
+					$json_str 	= base64_decode($hash_b64);
+					$json_arr 	= json_decode($json_str, true);
+
 					$now 	= new DateTime();
 					$future = new DateTime("now +2 hours");
 					$server = $request->getServerParams();
-					$jti 	= base64_encode(openssl_random_pseudo_bytes(64));
+					// $jti 	= base64_encode(openssl_random_pseudo_bytes(64));
+					$jti 	= rex_addon::get('slimdaxo')->getConfig('slimdaxo_secretKey');
 
 					$payload = [
 						"iat" => $now->getTimeStamp(),
