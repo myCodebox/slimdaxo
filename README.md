@@ -15,7 +15,7 @@ composer install
 ```
 
 ## Todo
-- [ ] Set user API key
+- [x] Set user API key
 - [ ] Test user API key
 - [ ] Add new routes
 
