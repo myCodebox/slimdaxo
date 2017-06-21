@@ -42,9 +42,9 @@
 			]));
 
 
-			$app->group('/slimdaxo', function () {
-				$this->map(['POST'], '/token', function (Request $request, Response $response) {
 
+			$app->group('/slimdaxo', function () {
+				$this->post('/token', function (Request $request, Response $response) {
 					$data_req = $request->getParsedBody();
 					$hash_b64 = filter_var($data_req['hash'], FILTER_SANITIZE_STRING);
 					$hash_str = base64_decode($hash_b64);
@@ -78,7 +78,6 @@
 					} else {
 						return $response->withStatus(401);
 					}
-
 				});
 			});
 
