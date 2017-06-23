@@ -8,8 +8,8 @@
 		public function setAuthJsData($debug = false)
 		{
 			// set token url
-			$url = rex::getServer().'slimdaxo/token';
-			rex_view::setJsProperty('slimdaxo_token', base64_encode(rtrim($url)));
+			$url = rex::getServer().'slimdaxo';
+			rex_view::setJsProperty('slimdaxo_path', base64_encode(rtrim($url)));
 
 			// set user hash
 			if ($ycom_user = rex_ycom_auth::getUser()) {

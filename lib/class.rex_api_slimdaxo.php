@@ -23,6 +23,7 @@
 		// init
 		public function execute()
 		{
+			self::setConfig();
 			$msg = $this->addSlim();
 			$res = new rex_api_result(true, $msg);
 			return $res;
@@ -38,7 +39,14 @@
 			$app->add(new \Slim\Middleware\JwtAuthentication([
 				"path" 			=> "/slimdaxo",
 				"passthrough" 	=> "/slimdaxo/token",
-				"secret" 		=> self::$jwt_secretKey
+				"secret" 		=> self::$jwt_secretKey,
+				"error"         => function ($request, $response, $arguments) {
+					$data["status"] = "error";
+					$data["message"] = $arguments["message"];
+					return $response
+						->withHeader("Content-Type", "application/json")
+						->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+				},
 			]));
 
 
@@ -78,6 +86,14 @@
 					} else {
 						return $response->withStatus(401);
 					}
+				});
+
+				// TEST TOKEN
+				$this->post('/test', function (Request $request, Response $response) {
+					$data['test'] = 'ALLE OK';
+					return $response->withStatus(201)
+						->withHeader("Content-Type", "application/json")
+						->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 				});
 			});
 
