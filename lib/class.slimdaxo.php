@@ -5,7 +5,7 @@
 	{
 
 
-		public function setAuthJsData($debug = false)
+		public static function setAuthJsData($debug = false)
 		{
 			// set token url
 			$url = rex::getServer().'slimdaxo';
